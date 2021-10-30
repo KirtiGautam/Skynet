@@ -1,0 +1,20 @@
+.log-title {
+  color: #606366;
+  text-align: center;
+}
+
+.form-container {
+  margin: 0vh 6vh 3vh 6vh;
+  padding: 4vh 6vh 3vh 6vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container > * {
+  width: 100%;
+}
+
+.redirect-link {
+  text-align: center;
+  margin-bottom: 1vh;
+}
