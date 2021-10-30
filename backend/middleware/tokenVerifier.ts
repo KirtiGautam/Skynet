@@ -13,7 +13,7 @@ let tokenVerifier = (request: express.Request, response: express.Response, next:
                 if (typeof accessToken === "string") {
                     jwt.verify(accessToken, key, (error , decode) =>{
                         if(error){
-                            if(typeof refreshToken === "string" && key){
+                            if(typeof refreshToken === "string" && key && error.name === "TokenExpiredError"){
                                 jwt.verify(refreshToken, key, async (error, decode) => {
                                     if(error){
                                         response.status(401).json({
@@ -43,6 +43,15 @@ let tokenVerifier = (request: express.Request, response: express.Response, next:
                                         }
                                     }
                                 })
+                            } else {
+                                return response.status(401).json({
+                                    errors: [
+                                        {
+                                            error: "Access Denied",
+                                            message: "Invaid token"
+                                        }
+                                    ]
+                                });
                             }
                         } else {
                             if(decode){
