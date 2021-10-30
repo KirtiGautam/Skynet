@@ -50,10 +50,9 @@ export class SignupComponent implements OnInit {
         (resp) => {
           that.snackbar.open(resp.message);
           that.authService.login(userName, password).subscribe((res) => {
+            that.authService.store(res);
             that.userService.getUser().subscribe((user) => {
               that.storageService.set('user', user);
-              that.loading = false;
-              that.authService.store(res);
               this.router.navigate(['/']);
             });
           });

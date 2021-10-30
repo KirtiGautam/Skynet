@@ -42,11 +42,10 @@ export class LoginComponent implements OnInit {
         .subscribe(
           (res) => {
             that.authService.store(res);
-            that.router.navigate(['/']);
             that.snackbar.open('Login Successful!!');
             that.userService.getUser().subscribe((user) => {
               that.storageService.set('user', user);
-              that.loading = false;
+              that.router.navigate(['/']);
             });
           },
           (error) => {
