@@ -22,3 +22,5 @@
 ### Running the server
 - Run `ng serve` to start the app server
 - Open `localhost:<port-mentioned-in-env>` to see the app running in browser
+
+#### [Postman API collection](https://documenter.getpostman.com/view/14223391/UV5f9Efd#92535086-0eb8-484a-a07d-65be89167acb)
