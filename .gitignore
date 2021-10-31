@@ -45,3 +45,4 @@ typings
 Thumbs.db
 
 .env
+environment.localhost.ts
