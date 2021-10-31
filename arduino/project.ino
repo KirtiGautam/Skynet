@@ -10,11 +10,11 @@ WiFiServer server(80);
 String header;
 
 
-String output5State = "off";
-String output4State = "off";
+String output15State = "off";
+String output14State = "off";
 
-const int output5 = 5;
-const int output4 = 4;
+const int output15 = 15;
+const int output14 = 14;
 
 
 unsigned long currentTime = millis();
@@ -26,11 +26,11 @@ const long timeoutTime = 2000;
 void setup() {
   Serial.begin(115200);
   
-  pinMode(output5, OUTPUT);
-  pinMode(output4, OUTPUT);
+  pinMode(output15, OUTPUT);
+  pinMode(output14, OUTPUT);
   
-  digitalWrite(output5, LOW);
-  digitalWrite(output4, LOW);
+  digitalWrite(output15, LOW);
+  digitalWrite(output14, LOW);
 
   
   Serial.print("Connecting to ");
@@ -71,22 +71,22 @@ void loop(){
             client.println();
             
             // turns the GPIOs on and off
-            if (header.indexOf("GET /5/on") >= 0) {
-              Serial.println("GPIO 5 on");
-              output5State = "on";
-              digitalWrite(output5, HIGH);
-            } else if (header.indexOf("GET /5/off") >= 0) {
-              Serial.println("GPIO 5 off");
-              output5State = "off";
-              digitalWrite(output5, LOW);
-            } else if (header.indexOf("GET /4/on") >= 0) {
-              Serial.println("GPIO 4 on");
-              output4State = "on";
-              digitalWrite(output4, HIGH);
-            } else if (header.indexOf("GET /4/off") >= 0) {
-              Serial.println("GPIO 4 off");
-              output4State = "off";
-              digitalWrite(output4, LOW);
+            if (header.indexOf("GET /15/on") >= 0) {
+              Serial.println("GPIO 15 on");
+              output15State = "on";
+              digitalWrite(output15, HIGH);
+            } else if (header.indexOf("GET /15/off") >= 0) {
+              Serial.println("GPIO 15 off");
+              output15State = "off";
+              digitalWrite(output15, LOW);
+            } else if (header.indexOf("GET /14/on") >= 0) {
+              Serial.println("GPIO 14 on");
+              output14State = "on";
+              digitalWrite(output14, HIGH);
+            } else if (header.indexOf("GET /14/off") >= 0) {
+              Serial.println("GPIO 14 off");
+              output14State = "off";
+              digitalWrite(output14, LOW);
             }
             
            
@@ -103,21 +103,21 @@ void loop(){
             client.println("<body><h1>ESP8266 Web Server</h1>");
             
             // Display current state, and ON/OFF buttons for GPIO 5  
-            client.println("<p>GPIO 5 - State " + output5State + "</p>");
+            client.println("<p>GPIO 15 - State " + output15State + "</p>");
             // If the output5State is off, it displays the ON button       
-            if (output5State=="off") {
-              client.println("<p><a href=\"/5/on\"><button class=\"button\">ON</button></a></p>");
+            if (output15State=="off") {
+              client.println("<p><a href=\"/15/on\"><button class=\"button\">ON</button></a></p>");
             } else {
-              client.println("<p><a href=\"/5/off\"><button class=\"button button2\">OFF</button></a></p>");
+              client.println("<p><a href=\"/15/off\"><button class=\"button button2\">OFF</button></a></p>");
             } 
                
             // Display current state, and ON/OFF buttons for GPIO 4  
-            client.println("<p>GPIO 4 - State " + output4State + "</p>");
+            client.println("<p>GPIO 14 - State " + output14State + "</p>");
             // If the output4State is off, it displays the ON button       
-            if (output4State=="off") {
-              client.println("<p><a href=\"/4/on\"><button class=\"button\">ON</button></a></p>");
+            if (output14State=="off") {
+              client.println("<p><a href=\"/14/on\"><button class=\"button\">ON</button></a></p>");
             } else {
-              client.println("<p><a href=\"/4/off\"><button class=\"button button2\">OFF</button></a></p>");
+              client.println("<p><a href=\"/14/off\"><button class=\"button button2\">OFF</button></a></p>");
             }
             client.println("</body></html>");
             
