@@ -75,18 +75,22 @@ void loop(){
               Serial.println("GPIO 15 on");
               output15State = "on";
               digitalWrite(output15, HIGH);
+             Serial.println("selected pin is on");
             } else if (header.indexOf("GET /15/off") >= 0) {
               Serial.println("GPIO 15 off");
               output15State = "off";
               digitalWrite(output15, LOW);
+              Serial.println("Selected pin is off");
             } else if (header.indexOf("GET /14/on") >= 0) {
               Serial.println("GPIO 14 on");
               output14State = "on";
               digitalWrite(output14, HIGH);
+              Serial.println("Selected pin is on");
             } else if (header.indexOf("GET /14/off") >= 0) {
               Serial.println("GPIO 14 off");
               output14State = "off";
-              digitalWrite(output14, LOW);
+             digitalWrite(output14, LOW);
+              Serial.println("selected pin is off");
             }
             
            
